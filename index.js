@@ -21,9 +21,10 @@ const newUserAgent = new UserAgent().toString()
 puppeteer.use(StealthPlugin())
 ;(async () => {
   const browser = await puppeteer.launch(
-    // { headless: "new" }
-    devPptConfig
+    { headless: "new" }
+    // devPptConfig
   )
+  console.log("⚠️ Disclaimer: This tool is only for personnal use ⚠️\n")
 
   const page = await browser.newPage()
   await page.setUserAgent(newUserAgent)
@@ -42,6 +43,8 @@ puppeteer.use(StealthPlugin())
   })
 
   console.log("Click on chapter you want read")
-  console.log(`Here, the last ${url.length} chapters:`)
+  console.log(`Here, the last ${url.length} chapters:\n`)
   console.log(url)
+
+  await browser.close()
 })()
