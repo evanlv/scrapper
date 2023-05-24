@@ -27,11 +27,12 @@ puppeteer.use(StealthPlugin())
   console.log("⚠️  Disclaimer: This tool is only for personnal use ⚠️\n")
 
   const page = await browser.newPage()
-  await page.setUserAgent(newUserAgent)
 
+  await page.setUserAgent(newUserAgent)
   await page.goto(website, {
     waitUntil: "domcontentloaded",
   })
+
   console.log(`Welcome to ${website.split(".")[1]}\n`)
   console.log(`You are looking for ${manga} scans.`)
 
