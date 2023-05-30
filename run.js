@@ -1,30 +1,30 @@
-import puppeteer from "puppeteer-extra"
-import StealthPlugin from "puppeteer-extra-plugin-stealth"
-import { executablePath } from "puppeteer"
+import { input } from "@inquirer/prompts"
+import puppeteer from "puppeteer"
 import UserAgent from "user-agents"
-import input from "@inquirer/input"
 
 // Add this to open browser when running the script
-const devPptConfig = {
-  headless: false,
-  slowMo: 50,
-  defaultViewport: null,
-  executablePath: executablePath(),
-}
+// const devPptConfig = {
+//   headless: false,
+//   slowMo: 50,
+//   defaultViewport: null,
+//   executablePath: executablePath(),
+// }
 
 const newUserAgent = new UserAgent().toString()
 
-puppeteer.use(StealthPlugin())
 ;(async () => {
+  console.dir("⚠️  Disclaimer: This tool is only for personnal use ⚠️")
+
   const answer = await input({ message: "Which manga are you looking for?" })
 
-  const browser = await puppeteer.launch(
-    { headless: "new" }
-    // devPptConfig
-  )
-  console.log("⚠️  Disclaimer: This tool is only for personnal use ⚠️\n")
+  const browser = await puppeteer.launch({
+    headless: "new",
+    executablePath:
+      "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+  })
 
   const page = await browser.newPage()
+
   await page.setUserAgent(newUserAgent)
 
   const website = `https://www.japscan.lol/manga/${answer}/`
