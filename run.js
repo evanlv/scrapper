@@ -1,6 +1,7 @@
 import { input } from "@inquirer/prompts"
 import puppeteer from "puppeteer"
 import UserAgent from "user-agents"
+import chalk from "chalk"
 
 // Add this to open browser when running the script
 // const devPptConfig = {
@@ -18,7 +19,11 @@ const paginate = (array, pageSize, pageNumber) => {
 }
 
 ;(async () => {
-  console.dir("⚠️  Disclaimer: This tool is only for personnal use ⚠️")
+  console.log(
+    chalk.yellow(
+      "/!\\ Disclaimer: This tool is only for personnal use! /!\\ \n"
+    )
+  )
 
   const browser = await puppeteer.launch({
     headless: "new",
@@ -52,15 +57,15 @@ const paginate = (array, pageSize, pageNumber) => {
   let currentPage = 1
   let displayLinks = paginate(url, PAGE_SIZE, currentPage)
 
-  console.log("Click on the chapter you want read")
-
   while (displayLinks.length > 0) {
     console.log("Click on the chapter you want to read:")
+    console.log(chalk.blue("To open an url, press cmd + click"))
     console.log(displayLinks)
     console.log("Enjoy~~\n")
 
     const inputPrompt = await input({
       message: "Enter 'n' to view the next page, or press any key to exit",
+      default: "n",
     })
 
     if (inputPrompt === "n") {
