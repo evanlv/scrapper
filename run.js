@@ -1,7 +1,6 @@
 import { input } from "@inquirer/prompts"
 import puppeteer from "puppeteer"
 import UserAgent from "user-agents"
-import chalk from "chalk"
 
 // Add this to open browser when running the script
 // const devPptConfig = {
@@ -19,11 +18,7 @@ const paginate = (array, pageSize, pageNumber) => {
 }
 
 ;(async () => {
-  console.log(
-    chalk.yellow(
-      "/!\\ Disclaimer: This tool is only for personnal use! /!\\ \n"
-    )
-  )
+  console.dir("/!\\ Disclaimer: This tool is only for personal use! /!\\ \n")
 
   const browser = await puppeteer.launch({
     headless: "new",
@@ -35,13 +30,16 @@ const paginate = (array, pageSize, pageNumber) => {
 
   await page.setUserAgent(newUserAgent)
 
-  const answer = await input({ message: "Which manga are you looking for?" })
+  const answer = await input({
+    message: "Which manga are you looking for?",
+    default: "kingdom",
+  })
   const website = `https://www.japscan.lol/manga/${answer}/`
   await page.goto(website, {
     waitUntil: "domcontentloaded",
   })
 
-  console.log(`Welcome to ${website.split(".")[1]}\n`)
+  console.log(`\nWelcome to ${website.split(".")[1]}\n`)
 
   console.log(`You are looking for ${answer} scans.`)
 
@@ -59,7 +57,7 @@ const paginate = (array, pageSize, pageNumber) => {
 
   while (displayLinks.length > 0) {
     console.log("Click on the chapter you want to read:")
-    console.log(chalk.blue("To open an url, press cmd + click"))
+    console.dir("To open a URL, press cmd + click")
     console.log(displayLinks)
     console.log("Enjoy~~\n")
 
