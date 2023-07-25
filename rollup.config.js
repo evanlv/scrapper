@@ -5,7 +5,7 @@ import cleanup from "rollup-plugin-cleanup"
 const rollupConfig = {
   input: "run.js",
   output: {
-    file: "dist/run.js",
+    file: "dist/runScrappe.js",
     format: "cjs",
     exports: "auto",
     globals: {

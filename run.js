@@ -13,9 +13,8 @@ import UserAgent from "user-agents"
 const newUserAgent = new UserAgent().toString()
 const PAGE_SIZE = 10
 
-const paginate = (array, pageSize, pageNumber) => {
-  return array.slice((pageNumber - 1) * pageSize, pageNumber * pageSize)
-}
+const paginate = (array, pageSize, pageNumber) =>
+  array.slice((pageNumber - 1) * pageSize, pageNumber * pageSize)
 
 ;(async () => {
   console.dir("/!\\ Disclaimer: This tool is only for personal use! /!\\ \n")
@@ -25,7 +24,7 @@ const paginate = (array, pageSize, pageNumber) => {
     executablePath:
       "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
   })
-  9
+
   const page = await browser.newPage()
 
   await page.setUserAgent(newUserAgent)

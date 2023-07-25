@@ -4,11 +4,12 @@
   "name": "run",
   "scripts": {
     "purge": "rm -rf dist run run-*",
-    "build": "npx rollup -c rollup.config.js && npx pkg dist/run.js -t node18-macos-arm64 --public",
-    "execute": "open run"
+    "build": "npx rollup -c rollup.config.js && npx pkg dist/runScrappe.js -t node18-macos-arm64 --public",
+    "execute": "open runScrappe"
   },
   "dependencies": {
     "@inquirer/prompts": "^1.2.3",
+    "axios": "^1.4.0",
     "inquirer": "^9.2.6",
     "puppeteer": "^18.2.1",
     "puppeteer-extra": "^3.3.6",
