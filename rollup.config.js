@@ -1,11 +1,12 @@
 import nodeResolve from "@rollup/plugin-node-resolve"
 import executable from "rollup-plugin-executable"
 import cleanup from "rollup-plugin-cleanup"
+import commonjs from "@rollup/plugin-commonjs"
 
 const rollupConfig = {
-  input: "run.js",
+  input: "./src/run.js",
   output: {
-    file: "dist/runScrappe.js",
+    file: "dist/japScrap.js",
     format: "cjs",
     exports: "auto",
     globals: {
@@ -14,7 +15,7 @@ const rollupConfig = {
       "user-agents": "UserAgent",
     },
   },
-  plugins: [nodeResolve(), executable(), cleanup()],
+  plugins: [nodeResolve(), executable(), cleanup(), commonjs()],
   external: ["puppeteer", "user-agents", "@inquirer/prompts"],
 }
 export default rollupConfig

@@ -1,18 +1,20 @@
 {
   "type": "module",
-  "bin": "./run.js",
-  "name": "run",
+  "bin": "./src/run.js",
+  "name": "japscrap",
   "scripts": {
-    "purge": "rm -rf dist run run-*",
-    "build": "npx rollup -c rollup.config.js && npx pkg dist/runScrappe.js -t node18-macos-arm64 --public",
-    "execute": "open runScrappe"
+    "purge": "rm -rf dist japScrap",
+    "build": "npx rollup -c rollup.config.js && npx pkg dist/japScrap.js -t node18-macos-arm64 --public",
+    "execute": "open japScrap"
   },
   "dependencies": {
     "@inquirer/prompts": "^1.2.3",
+    "@rollup/plugin-commonjs": "^25.0.3",
     "axios": "^1.4.0",
     "inquirer": "^9.2.6",
     "puppeteer": "^18.2.1",
     "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-anonymize-ua": "^2.4.6",
     "puppeteer-extra-plugin-recaptcha": "^3.6.8",
     "puppeteer-extra-plugin-stealth": "^2.11.2",
     "rollup": "^3.23.0",
@@ -20,13 +22,19 @@
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^15.0.2",
+    "eslint": "^8.45.0",
+    "eslint-config-prettier": "^8.8.0",
     "rollup-plugin-cleanup": "^3.2.1",
     "rollup-plugin-executable": "^1.6.3"
   },
   "pkg": {
-    "scripts": "run.js",
+    "scripts": [
+      "node_modules/puppeteer/lib/*.js",
+      "node_modules/puppeteer-extra-plugin-stealth/**/*.js"
+    ],
     "targets": [
       "node18-macos-arm64"
-    ]
+    ],
+    "assets": "node_modules/puppeteer-extra-plugin-stealth/**/*.*"
   }
 }
