@@ -12,7 +12,7 @@ puppeteer.use(StealthPlugin())
 const website = "https://www.japscan.lol"
 const searchInputSelector = "input#searchInput"
 const firstItemSelector = "div#results a.list-group-item"
-const chapterSelector = "div#chapters_list > div.collapse > div > a"
+const chapterSelector = "div#chapters_list div.collapse div a"
 const PAGE_SIZE = 10
 const viewportWidth = 1280
 const viewportHeight = 800
